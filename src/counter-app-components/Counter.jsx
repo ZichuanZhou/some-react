@@ -1,42 +1,48 @@
 import React, { Component } from "react";
 
 export default class Counter extends Component {
-	
-  state = {
-    count: 0
-	};
-	
-	handleIncrement = (product) => {
-
-		this.setState({
-			count: this.state.count + 1
-		})
-	}
-
-	handleDecrement = () => {
-		this.setState({
-			count: this.state.count - 1
-		});
-	}
-
+  
   render() {
+    //destructure arguments
+    const {onIncrement, onDecrement, onDelete, counter} = this.props;
     return (
       <div>
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button onClick={()=>this.handleIncrement({id:1})} className="btn btn-secondary btn-sm">+</button> 
-				<button onClick={this.handleDecrement} className="btn btn-secondary btn-sm">-</button>
+        <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
+        <button
+          onClick={() => onIncrement(counter)}
+          className="btn btn-secondary btn-sm"
+        >
+          +
+        </button>
+        <button
+          onClick={() => onDecrement(counter)}
+          className="btn btn-info btn-sm m-2"
+        >
+          -
+        </button>
+        <button
+          onClick={() => onDelete(counter)}
+          className="btn btn-danger btn-sm"
+        >
+          Delete
+        </button>
       </div>
     );
   }
 
-  formatCount() {
-    const { count } = this.state;
-    return count === 0 ? "Zero" : count;
+  formatValue() {
+    const value = this.props.counter.value;
+    return value === 0 ? "Zero" : value;
   }
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.count === 0 ? "warning" : "primary";
+    classes +=
+      this.props.counter.value === 0
+        ? "warning"
+        : this.props.counter.value > 0
+          ? "primary"
+          : "secondary";
     return classes;
   }
 }
