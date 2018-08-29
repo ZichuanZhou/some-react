@@ -7,5 +7,5 @@ import CounterApp from "./counter-app-components/App";
 import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 
-ReactDOM.render(<ReduxApp />, document.getElementById("root"));
+ReactDOM.render(<WeatherApp />, document.getElementById("root"));
 registerServiceWorker();

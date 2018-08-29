@@ -28,7 +28,7 @@ export default class App extends Component {
 
 		if(city && country) {
 			console.log(data);
-			if(data.cod == 200) {
+			if(data.cod === 200) {
 				this.setState({
 					temperature: data.main.temp,
 					city: data.name,
